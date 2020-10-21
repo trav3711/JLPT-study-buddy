@@ -8,5 +8,7 @@ CREATE TABLE JLPTVocab (
   hiragana VARCHAR2(5) NOT NULL,
   pos VARCHAR2(40),
   definition VARCHAR2(20),
-  example VARCHAR2(50)
+  example VARCHAR2(50),
+  used INTEGER NUMBER(1) DEFAULT 0,
+  CHECK(used) IN(0, 1)
 );

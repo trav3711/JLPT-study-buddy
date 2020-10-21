@@ -2,6 +2,7 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 import sqlite3
+from scraper import Scraper
 
 def get_db():
     if 'db' not in g:
@@ -20,6 +21,9 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
+def fill_db():
+    continue
+
 def init_db():
     db = get_db()
     with current_app.open_resource('schema.sql') as f:
@@ -34,6 +38,3 @@ def init_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
-
-def fill_db():
-    
