@@ -21,8 +21,8 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
-def fill_db():
-    continue
+def fill_db(db):
+    db.execute()
 
 def init_db():
     db = get_db()

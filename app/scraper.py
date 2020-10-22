@@ -17,14 +17,6 @@ class Scraper():
     def get_vocab(self, vocab_list):
 
         for row in vocab_list:
-
-            #first = reading.text.find('1.')
-            #second = reading.text.find('2.')
-
-            #pos = reading.text[0:first]
-            #definition_one = reading.text[first:]
-            #definition_two = reading.text[second:]
-
             try:
                 kanji = row.find('div', class_='f_kanji').text
                 extra = row.find('div', class_='jukugo').text.replace('\n', '')
