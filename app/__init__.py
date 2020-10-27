@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from . import db
-from scraper import Scraper
 
 
 def create_app(test_config=None):
@@ -26,10 +25,6 @@ def create_app(test_config=None):
         pass
 
     db.init_app(app)
-
-    sc = Scraper(db)
-    sc.iterate_endpoints()
-
 
     # a simple page that says hello
     @app.route('/')

@@ -5,10 +5,9 @@ CREATE TABLE JLPTVocab (
   level CHAR(2) NOT NULL,
   kanji VARCHAR2(10),
   furigana VARCHAR2(10),
-  hiragana VARCHAR2(5) NOT NULL,
   pos VARCHAR2(40),
   definition VARCHAR2(20),
+  usefulness INTEGER,
   example VARCHAR2(50),
-  used INTEGER NUMBER(1) DEFAULT 0,
-  CHECK(used) IN(0, 1)
+  used INTEGER NUMBER(1) DEFAULT 0
 );

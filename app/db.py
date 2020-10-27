@@ -22,12 +22,18 @@ def close_db(e=None):
         db.close()
 
 def fill_db(db):
-    db.execute()
+    sc = Scraper()
+    vocab_list = sc.iterate_endpoints()
+    with current_app.open_resource('fill.sql') as f:
+        for dictionary in vocab_list:
+            query = 'INSERT INTO JLPTVocab (level, furigana, kanji, pos, definition, usefulness) VALUES ({JLPTlevel}, {furigana}, {kanji}, {pos}, {definition}, {usefulness});'.format(**dictionary)
+            db.execute(query)
 
 def init_db():
     db = get_db()
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+    fill_db(db)
 
 @click.command('init-db')
 @with_appcontext
