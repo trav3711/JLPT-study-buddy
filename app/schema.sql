@@ -3,11 +3,11 @@ DROP TABLE IF EXISTS JLPTVocab;
 CREATE TABLE JLPTVocab (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   level CHAR(2) NOT NULL,
-  kanji VARCHAR2(10),
-  furigana VARCHAR2(10),
+  kanji VARCHAR(10),
+  furigana VARCHAR(10),
   pos VARCHAR2(40),
-  definition VARCHAR2(20),
-  usefulness INTEGER,
+  definition VARCHAR2(100),
+  usefulness CHAR(1),
   example VARCHAR2(50),
   used INTEGER NUMBER(1) DEFAULT 0
 );
