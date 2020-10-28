@@ -5,7 +5,6 @@ class Scraper():
     def __init__(self):
         self.BASE_URL = "https://www.kanshudo.com/collections/wikipedia_jlpt/"
         self.ENDPOINTS = []
-        #self.database = db
 
     def set_endpoints(self):
         page = requests.get(self.BASE_URL)
@@ -33,14 +32,6 @@ class Scraper():
             except:
                 continue
 
-            #print('THE JLPT LEVEL OF THIS WORD IS ' + level)
-            #print('FURIGANA: ' + furigana)
-            #print('WORD: ' + word)
-            #print('PART OF SPEACH: ' + pos)
-            #print('DEFINITION: ' + definition)
-            #print('USEFULNESS: ' + usefulness + '\n')
-
-            #return [level, furigana, pos, definition, usefulness]
             result.append({'JLPTlevel' : level,
                     'furigana' : furigana,
                     'kanji' : word,
@@ -48,15 +39,6 @@ class Scraper():
                     'definition' : definition,
                     'usefulness' : usefulness})
 
-            #def fill_db(self):
-                #myDB = self.database
-                #myDB.execute(
-                #    'INSERT INTO JLPTVocab (level, kanji, furigana, hirigana, pos, definition, example, used)'
-                #)
-                #continue
-
-            #print(definition_one + '\n')
-            #print(definition_two)
         return result
 
     def iterate_endpoints(self):
@@ -64,13 +46,11 @@ class Scraper():
         resultList = []
 
         for endpoint in self.ENDPOINTS:
-            #print(resultList)
 
             page = requests.get(self.BASE_URL + endpoint)
             soup = bs(page.content, 'html.parser')
 
             raw_vocab_list = soup.find_all('div', class_='jukugorow first last')
-            #print(raw_vocab_list)
             resultList += self.get_vocab(raw_vocab_list)
 
         return resultList
