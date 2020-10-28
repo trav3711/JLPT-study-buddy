@@ -3,6 +3,7 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 import sqlite3
 from scraper import Scraper
+import random as r
 
 def get_db():
     if 'db' not in g:
@@ -50,3 +51,19 @@ def init_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+def db_size():
+    cursor = get_db().cursor()
+    res = cursor.execute('SELECT COUNT(*) AS size FROM JLPTVocab')
+    return res.fetchone()['size']
+
+def get_random_word():
+    db = get_db()
+    cursor = db.cursor()
+    index = r.randint(1, db_size()+1)
+
+    row = cursor.execute('SELECT * FROM JLPTVocab WHERE id IS {}'.format(index)).fetchone()
+    res = {}
+    for key in row.keys():
+        res[key] = row[key]
+    return res

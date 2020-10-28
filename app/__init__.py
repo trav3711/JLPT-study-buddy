@@ -28,7 +28,7 @@ def create_app(test_config=None):
 
     # a simple page that says hello
     @app.route('/')
-    def hello():
-        return 'Hello, World!'
+    def get_random():
+        return db.get_random_word()
 
     return app
