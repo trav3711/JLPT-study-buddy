@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from . import db
 
 
@@ -29,6 +29,7 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/')
     def get_random():
-        return db.get_random_word()
+        word_dict = db.get_random_word()
+        return render_template('base.html', word_dict=word_dict)
 
     return app
