@@ -25,7 +25,7 @@ def close_db(e=None):
 def fill_db(db):
     sc = Scraper()
     vocab_list = sc.iterate_endpoints()
-    with current_app.open_resource('fill.sql') as f:
+    with current_app.open_resource('schema.sql') as f:
         for dictionary in vocab_list:
             try:
                 params = [dictionary['JLPTlevel'], dictionary['furigana'], dictionary['kanji'], dictionary['pos'], dictionary['definition'], dictionary['usefulness']]

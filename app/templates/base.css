@@ -1,0 +1,5 @@
+html, body { height:100%; margin:0; padding:0 }
+div { position:fixed; width:50%; height:50% }
+#left { top:0;   left:0;   background:orange  }
+#right { top:0;   left:50%; background:blue    }
+#bottom { top:50%; width:100%;  background:green   } 

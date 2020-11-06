@@ -3,17 +3,36 @@
   <head>
       <meta charset="utf-8">
       <title>JLPT word of the day</title>
-      <style></style>
+      <style media="screen">
+          html, body { height:100%; margin:0; padding:0 }
+          div { position:fixed; width:100%; height:50% }
+
+          #top { top:0; align-items: center;}
+          #bottom { top:50%;}
+          #container { top: 25%;}
+
+          #furigana { top: 22%; font-size: 24pt; text-align: center; align-content: center;}
+          #kanji {top: 25%; font-size: 128pt; text-align: center; font-weight: bold;align-content: center;}
+          #details { top: 55%; text-align: center;}
+      </style>
   </head>
   <body>
-      <h1>今日の単語</h1>
-
-      <div id="left">
-        <h5 id="furigana">{{ word_dict['furigana'] }}</h5>
-        <h3 id="kanji">{{ word_dict['kanji'] }}</h3>
+      <div id="top">
+        <div id="container">
+          <div id="furigana">{{ word_dict['furigana'] }}</div>
+          <div id="kanji">{{ word_dict['kanji'] }}</div>
+        </div>
+      </div>
+      <div id="bottom">
+            <div id="details">
+                <h3>JLPT level: {{ word_dict['level'] }}</h3>
+                <h3>Usefulness: {{ word_dict['usefulness'] }}</h3>
+                <h3>{{ word_dict['pos'] }}</h3>
+                <h3>{{ word_dict['definition'] }}</h3>
+            </div>
+      </div>
+      <div id="bottom">
 
       </div>
-      <div id="right"></div>
-      <div id="bottom"></div>
   </body>
 </html>
